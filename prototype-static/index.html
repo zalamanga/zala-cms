@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ZalaCMS prototype CMS company profile dengan admin dashboard, blog, pages, contact inbox, SEO, role, dan audit log.">
+    <title>ZalaCMS - Custom CMS Company Profile</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="ZalaCMS home">
+        <span class="brand-mark">Z</span>
+        <span>ZalaCMS</span>
+      </a>
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <a href="#features">Fitur</a>
+        <a href="#news">News</a>
+        <a href="#contact">Kontak</a>
+        <a class="nav-cta" href="#admin">Admin</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <img src="assets/zala-hero.png" alt="Dashboard CMS modern untuk company profile" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Laravel-ready CMS concept</p>
+          <h1>ZalaCMS</h1>
+          <p class="hero-copy">
+            Website company profile dengan dashboard admin untuk mengelola halaman, berita,
+            gambar, pesan kontak, SEO, user role, dan audit log sederhana.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#admin">Coba Dashboard</a>
+            <a class="button secondary" href="#features">Lihat Fitur</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section intro-band">
+        <div>
+          <p class="section-kicker">Client-ready foundation</p>
+          <h2>CMS kecil yang terasa seperti project nyata.</h2>
+        </div>
+        <p>
+          Prototype ini dibuat untuk memvalidasi tampilan, navigasi, dan alur fitur sebelum
+          dipindahkan ke Laravel, MySQL, Blade, Tailwind, dan deployment hosting.
+        </p>
+      </section>
+
+      <section class="section feature-grid" id="features" aria-labelledby="feature-title">
+        <div class="section-heading">
+          <p class="section-kicker">Fitur minimal</p>
+          <h2 id="feature-title">Semua modul utama dari README sudah punya bentuk.</h2>
+        </div>
+        <article class="feature-card">
+          <span class="feature-icon">P</span>
+          <h3>CRUD Pages</h3>
+          <p>Kelola halaman company profile lengkap dengan slug, status publikasi, dan SEO meta.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon">N</span>
+          <h3>Blog / News</h3>
+          <p>Tulis artikel, upload cover image, simpan draft, lalu tampilkan ke halaman depan.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon">C</span>
+          <h3>Contact Inbox</h3>
+          <p>Form kontak masuk ke dashboard sehingga admin bisa melihat pesan calon client.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon">S</span>
+          <h3>Security Story</h3>
+          <p>Disiapkan untuk validasi input, CSRF, rate limit login, role middleware, dan XSS protection.</p>
+        </article>
+      </section>
+
+      <section class="section news-section" id="news" aria-labelledby="news-title">
+        <div class="section-heading">
+          <p class="section-kicker">Latest news</p>
+          <h2 id="news-title">Konten publik dari dashboard.</h2>
+        </div>
+        <div class="news-grid" id="publicNews"></div>
+      </section>
+
+      <section class="section contact-layout" id="contact" aria-labelledby="contact-title">
+        <div>
+          <p class="section-kicker">Contact form</p>
+          <h2 id="contact-title">Pesan dari pengunjung langsung masuk ke inbox admin.</h2>
+          <p>
+            Di Laravel nanti bagian ini memakai validasi server, CSRF token, throttle, dan notifikasi email.
+          </p>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <label>Nama <input name="name" autocomplete="name" required minlength="2" placeholder="Nama kamu"></label>
+          <label>Email <input name="email" type="email" autocomplete="email" required placeholder="nama@email.com"></label>
+          <label>Pesan <textarea name="message" required minlength="10" rows="5" placeholder="Ceritakan kebutuhan website kamu"></textarea></label>
+          <button class="button primary" type="submit">Kirim Pesan</button>
+          <p class="form-note" id="contactStatus" role="status"></p>
+        </form>
+      </section>
+
+      <section class="admin-shell" id="admin" aria-labelledby="admin-title">
+        <aside class="admin-sidebar">
+          <div class="admin-brand">
+            <span class="brand-mark">Z</span>
+            <div>
+              <strong>ZalaCMS</strong>
+              <small>Admin Panel</small>
+            </div>
+          </div>
+          <nav class="admin-menu" aria-label="Menu admin">
+            <button class="admin-tab active" type="button" data-tab="dashboard">Dashboard</button>
+            <button class="admin-tab" type="button" data-tab="pages">Pages</button>
+            <button class="admin-tab" type="button" data-tab="posts">Blog</button>
+            <button class="admin-tab" type="button" data-tab="messages">Messages</button>
+            <button class="admin-tab" type="button" data-tab="users">Users</button>
+            <button class="admin-tab" type="button" data-tab="audit">Audit</button>
+          </nav>
+        </aside>
+
+        <div class="admin-main">
+          <div class="admin-topbar">
+            <div>
+              <p class="section-kicker">Local demo</p>
+              <h2 id="admin-title">Dashboard CMS</h2>
+            </div>
+            <div class="session-box" id="sessionBox"></div>
+          </div>
+
+          <section class="login-panel" id="loginPanel">
+            <div>
+              <p class="section-kicker">Login admin</p>
+              <h3>Masuk untuk mengelola konten.</h3>
+              <p class="muted">Demo akun: admin@zala.test / admin123 atau editor@zala.test / editor123</p>
+            </div>
+            <form id="loginForm" class="inline-form">
+              <input name="email" type="email" required placeholder="Email">
+              <input name="password" type="password" required placeholder="Password">
+              <button class="button primary" type="submit">Login</button>
+            </form>
+            <p class="form-note" id="loginStatus" role="status"></p>
+          </section>
+
+          <section class="admin-panel active" id="panel-dashboard">
+            <div class="stats-grid" id="statsGrid"></div>
+            <div class="split-grid">
+              <div class="panel-block">
+                <h3>SEO Snapshot</h3>
+                <dl class="seo-list">
+                  <div><dt>Meta title</dt><dd>ZalaCMS - Company Profile Builder</dd></div>
+                  <div><dt>Meta description</dt><dd>Custom CMS untuk profil perusahaan, blog, dan pesan kontak.</dd></div>
+                </dl>
+              </div>
+              <div class="panel-block">
+                <h3>Security Checklist</h3>
+                <ul class="check-list">
+                  <li>CSRF protection</li>
+                  <li>Input validation</li>
+                  <li>Upload validation</li>
+                  <li>Role middleware</li>
+                  <li>Rate limit login</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-panel" id="panel-pages">
+            <div class="panel-toolbar">
+              <h3>Pages</h3>
+              <button class="button compact" type="button" id="newPageBtn">Tambah Page</button>
+            </div>
+            <form class="editor-form hidden" id="pageForm">
+              <input type="hidden" name="id">
+              <div class="form-grid">
+                <label>Judul <input name="title" required minlength="3"></label>
+                <label>Slug <input name="slug" required pattern="[a-z0-9-]+"></label>
+                <label>Status <select name="status"><option value="published">Published</option><option value="draft">Draft</option></select></label>
+                <label>Meta title <input name="metaTitle" required></label>
+                <label class="wide">Meta description <textarea name="metaDescription" rows="3" required></textarea></label>
+                <label class="wide">Content <textarea name="content" rows="5" required></textarea></label>
+              </div>
+              <div class="form-actions">
+                <button class="button primary" type="submit">Simpan Page</button>
+                <button class="button ghost" type="button" data-cancel="pageForm">Batal</button>
+              </div>
+            </form>
+            <div class="table-wrap"><table id="pagesTable"></table></div>
+          </section>
+
+          <section class="admin-panel" id="panel-posts">
+            <div class="panel-toolbar">
+              <h3>Blog / News</h3>
+              <button class="button compact" type="button" id="newPostBtn">Tambah Artikel</button>
+            </div>
+            <form class="editor-form hidden" id="postForm">
+              <input type="hidden" name="id">
+              <div class="form-grid">
+                <label>Judul <input name="title" required minlength="3"></label>
+                <label>Kategori <input name="category" required></label>
+                <label>Status <select name="status"><option value="published">Published</option><option value="draft">Draft</option></select></label>
+                <label>Cover image <input name="image" type="file" accept="image/png,image/jpeg,image/webp"></label>
+                <label class="wide">Ringkasan <textarea name="excerpt" rows="3" required></textarea></label>
+              </div>
+              <div class="form-actions">
+                <button class="button primary" type="submit">Simpan Artikel</button>
+                <button class="button ghost" type="button" data-cancel="postForm">Batal</button>
+              </div>
+            </form>
+            <div class="table-wrap"><table id="postsTable"></table></div>
+          </section>
+
+          <section class="admin-panel" id="panel-messages">
+            <div class="panel-toolbar">
+              <h3>Contact Messages</h3>
+              <button class="button compact" type="button" id="clearMessagesBtn">Bersihkan Read</button>
+            </div>
+            <div class="table-wrap"><table id="messagesTable"></table></div>
+          </section>
+
+          <section class="admin-panel" id="panel-users">
+            <div class="panel-toolbar">
+              <h3>Admin Users</h3>
+              <button class="button compact" type="button" id="newUserBtn">Tambah User</button>
+            </div>
+            <form class="editor-form hidden" id="userForm">
+              <input type="hidden" name="id">
+              <div class="form-grid">
+                <label>Nama <input name="name" required minlength="2"></label>
+                <label>Email <input name="email" type="email" required></label>
+                <label>Role <select name="role"><option value="editor">Editor</option><option value="admin">Admin</option></select></label>
+              </div>
+              <div class="form-actions">
+                <button class="button primary" type="submit">Simpan User</button>
+                <button class="button ghost" type="button" data-cancel="userForm">Batal</button>
+              </div>
+            </form>
+            <div class="table-wrap"><table id="usersTable"></table></div>
+          </section>
+
+          <section class="admin-panel" id="panel-audit">
+            <div class="panel-toolbar">
+              <h3>Audit Log</h3>
+              <button class="button compact" type="button" id="resetDemoBtn">Reset Demo Data</button>
+            </div>
+            <div class="audit-list" id="auditList"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <strong>ZalaCMS</strong>
+      <span>Prototype lokal untuk CMS company profile berbasis Laravel + MySQL.</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
